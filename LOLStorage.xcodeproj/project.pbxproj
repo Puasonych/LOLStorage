@@ -10,6 +10,9 @@
 		6F708F7F222BE565008C7EDB /* LOLStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F708F75222BE565008C7EDB /* LOLStorage.framework */; };
 		6F708F84222BE565008C7EDB /* LOLStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F83222BE565008C7EDB /* LOLStorageTests.swift */; };
 		6F708F86222BE565008C7EDB /* LOLStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F708F78222BE565008C7EDB /* LOLStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F708F90222BE7C1008C7EDB /* LOLStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F8F222BE7C1008C7EDB /* LOLStorageProtocol.swift */; };
+		6F708F92222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F91222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift */; };
+		6F708F94222BE848008C7EDB /* LOLStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F93222BE848008C7EDB /* LOLStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		6F708F7E222BE565008C7EDB /* LOLStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LOLStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F708F83222BE565008C7EDB /* LOLStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorageTests.swift; sourceTree = "<group>"; };
 		6F708F85222BE565008C7EDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F708F8F222BE7C1008C7EDB /* LOLStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorageProtocol.swift; sourceTree = "<group>"; };
+		6F708F91222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorageManagerProtocol.swift; sourceTree = "<group>"; };
+		6F708F93222BE848008C7EDB /* LOLStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 			children = (
 				6F708F78222BE565008C7EDB /* LOLStorage.h */,
 				6F708F79222BE565008C7EDB /* Info.plist */,
+				6F708F91222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift */,
+				6F708F8F222BE7C1008C7EDB /* LOLStorageProtocol.swift */,
+				6F708F93222BE848008C7EDB /* LOLStorage.swift */,
 			);
 			path = LOLStorage;
 			sourceTree = "<group>";
@@ -148,6 +157,7 @@
 				TargetAttributes = {
 					6F708F74222BE565008C7EDB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					6F708F7D222BE565008C7EDB = {
 						CreatedOnToolsVersion = 10.1;
@@ -194,6 +204,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F708F94222BE848008C7EDB /* LOLStorage.swift in Sources */,
+				6F708F90222BE7C1008C7EDB /* LOLStorageProtocol.swift in Sources */,
+				6F708F92222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +354,7 @@
 		6F708F8A222BE565008C7EDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -357,6 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.LOLStorage";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,6 +380,7 @@
 		6F708F8B222BE565008C7EDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -389,6 +405,7 @@
 		6F708F8D222BE565008C7EDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LOLStorageTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,6 +423,7 @@
 		6F708F8E222BE565008C7EDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LOLStorageTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
