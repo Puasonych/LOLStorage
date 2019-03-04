@@ -15,6 +15,6 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Core' do |subspec|
     subspec.source_files = 'LOLStorage/*.swift'
-    subspec.framework = 'UIKit'
+    subspec.framework = 'Foundation'
   end
 end
