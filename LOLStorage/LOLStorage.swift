@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class LocalStorage: LOLStorageProtocol {
+open class LOLStorage: LOLStorageProtocol {
     private let defaults: UserDefaults
     private let jsonEncoder: JSONEncoder
     private let jsonDecoder: JSONDecoder

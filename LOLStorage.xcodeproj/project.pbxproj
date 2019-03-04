@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F40A385222D29C900952D84 /* SimpleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F40A384222D29C900952D84 /* SimpleTests.swift */; };
 		6F708F7F222BE565008C7EDB /* LOLStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F708F75222BE565008C7EDB /* LOLStorage.framework */; };
-		6F708F84222BE565008C7EDB /* LOLStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F83222BE565008C7EDB /* LOLStorageTests.swift */; };
 		6F708F86222BE565008C7EDB /* LOLStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F708F78222BE565008C7EDB /* LOLStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F708F90222BE7C1008C7EDB /* LOLStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F8F222BE7C1008C7EDB /* LOLStorageProtocol.swift */; };
 		6F708F92222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F91222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift */; };
@@ -26,11 +26,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F40A384222D29C900952D84 /* SimpleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTests.swift; sourceTree = "<group>"; };
 		6F708F75222BE565008C7EDB /* LOLStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LOLStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F708F78222BE565008C7EDB /* LOLStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOLStorage.h; sourceTree = "<group>"; };
 		6F708F79222BE565008C7EDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F708F7E222BE565008C7EDB /* LOLStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LOLStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F708F83222BE565008C7EDB /* LOLStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorageTests.swift; sourceTree = "<group>"; };
 		6F708F85222BE565008C7EDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F708F8F222BE7C1008C7EDB /* LOLStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorageProtocol.swift; sourceTree = "<group>"; };
 		6F708F91222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorageManagerProtocol.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		6F708F82222BE565008C7EDB /* LOLStorageTests */ = {
 			isa = PBXGroup;
 			children = (
-				6F708F83222BE565008C7EDB /* LOLStorageTests.swift */,
+				6F40A384222D29C900952D84 /* SimpleTests.swift */,
 				6F708F85222BE565008C7EDB /* Info.plist */,
 			);
 			path = LOLStorageTests;
@@ -214,7 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F708F84222BE565008C7EDB /* LOLStorageTests.swift in Sources */,
+				6F40A385222D29C900952D84 /* SimpleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

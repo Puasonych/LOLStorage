@@ -19,7 +19,3 @@ public protocol LOLStorageManagerProtocol: class {
     /// Do save in UserDefaults
     func usePersistentStorage<T: Codable>(key: T.Type) -> Bool
 }
-
-public func typeToString<T>(_ type: T.Type) -> String {
-    return String(describing: type)
-}
