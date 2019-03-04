@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class LocalStorage: LOLStorageProtocol {
+open class LocalStorage: LOLStorageProtocol {
     private let defaults: UserDefaults
     private let jsonEncoder: JSONEncoder
     private let jsonDecoder: JSONDecoder
@@ -17,14 +17,14 @@ public class LocalStorage: LOLStorageProtocol {
     
     private lazy var cache: [String: Data] = [:]
     
-    init(manager: LOLStorageManagerProtocol, defaults: UserDefaults = UserDefaults(), jsonEncoder: JSONEncoder = JSONEncoder(), jsonDecoder: JSONDecoder = JSONDecoder()) {
+    public init(manager: LOLStorageManagerProtocol, defaults: UserDefaults = UserDefaults(), jsonEncoder: JSONEncoder = JSONEncoder(), jsonDecoder: JSONDecoder = JSONDecoder()) {
         self.manager = manager
         self.defaults = defaults
         self.jsonEncoder = jsonEncoder
         self.jsonDecoder = jsonDecoder
     }
     
-    func save<T>(value: T) where T : Codable {
+    public func save<T>(value: T) where T : Codable {
         let key = T.self
         let stringKey = String(describing: key)
         
@@ -45,7 +45,7 @@ public class LocalStorage: LOLStorageProtocol {
         }
     }
     
-    func load<T>(key: T.Type) -> T? where T : Codable {
+    public func load<T>(key: T.Type) -> T? where T : Codable {
         let stringKey = String(describing: key)
         
         if !self.manager.supportedTypes.contains(stringKey) {
@@ -67,7 +67,7 @@ public class LocalStorage: LOLStorageProtocol {
         return value
     }
     
-    func isExists<T: Codable>(key: T.Type) -> Bool {
+    public func isExists<T: Codable>(key: T.Type) -> Bool {
         let stringKey = String(describing: key)
         
         if !self.manager.supportedTypes.contains(stringKey) { return false }
@@ -82,7 +82,7 @@ public class LocalStorage: LOLStorageProtocol {
         return false
     }
     
-    func remove<T: Codable>(key: T.Type) {
+    public func remove<T: Codable>(key: T.Type) {
         let stringKey = String(describing: key)
         
         if !self.manager.supportedTypes.contains(stringKey) { return }
@@ -96,7 +96,7 @@ public class LocalStorage: LOLStorageProtocol {
         }
     }
     
-    func removeAll(without: Codable.Type...) {
+    public func removeAll(without: Codable.Type...) {
         for stringKey in self.manager.supportedTypes {
             if without.contains(where: { return stringKey == String(describing: $0)}) { continue }
             self.defaults.removeObject(forKey: stringKey)

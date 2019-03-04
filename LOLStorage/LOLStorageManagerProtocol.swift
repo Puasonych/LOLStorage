@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// The protocol used to define the specifications necessary for a `LocalStorage`.
+/// The protocol used to define the specifications necessary for a `LOLStorage`.
 public protocol LOLStorageManagerProtocol: class {
     /// This is a supported types
     var supportedTypes: Set<String> { get }
@@ -18,4 +18,8 @@ public protocol LOLStorageManagerProtocol: class {
     
     /// Do save in UserDefaults
     func usePersistentStorage<T: Codable>(key: T.Type) -> Bool
+}
+
+public func typeToString<T>(_ type: T.Type) -> String {
+    return String(describing: type)
 }
