@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6F40A385222D29C900952D84 /* SimpleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F40A384222D29C900952D84 /* SimpleTests.swift */; };
-		6F708F7F222BE565008C7EDB /* LOLStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F708F75222BE565008C7EDB /* LOLStorage.framework */; };
-		6F708F86222BE565008C7EDB /* LOLStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F708F78222BE565008C7EDB /* LOLStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F708F90222BE7C1008C7EDB /* LOLStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F8F222BE7C1008C7EDB /* LOLStorageProtocol.swift */; };
-		6F708F92222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F91222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift */; };
-		6F708F94222BE848008C7EDB /* LOLStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F93222BE848008C7EDB /* LOLStorage.swift */; };
+		6F708F7F222BE565008C7EDB /* RStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F708F75222BE565008C7EDB /* RStorage.framework */; };
+		6F708F86222BE565008C7EDB /* RStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F708F78222BE565008C7EDB /* RStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F708F90222BE7C1008C7EDB /* RStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F8F222BE7C1008C7EDB /* RStorageProtocol.swift */; };
+		6F708F92222BE7E7008C7EDB /* RStorageManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F91222BE7E7008C7EDB /* RStorageManagerProtocol.swift */; };
+		6F708F94222BE848008C7EDB /* RStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F93222BE848008C7EDB /* RStorage.swift */; };
+		6FECADC822383BFD00B0D272 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECADC722383BFD00B0D272 /* Key.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -21,20 +22,21 @@
 			containerPortal = 6F708F6C222BE565008C7EDB /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6F708F74222BE565008C7EDB;
-			remoteInfo = LOLStorage;
+			remoteInfo = RStorage;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6F40A384222D29C900952D84 /* SimpleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTests.swift; sourceTree = "<group>"; };
-		6F708F75222BE565008C7EDB /* LOLStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LOLStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F708F78222BE565008C7EDB /* LOLStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOLStorage.h; sourceTree = "<group>"; };
+		6F708F75222BE565008C7EDB /* RStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F708F78222BE565008C7EDB /* RStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RStorage.h; sourceTree = "<group>"; };
 		6F708F79222BE565008C7EDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F708F7E222BE565008C7EDB /* LOLStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LOLStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F708F7E222BE565008C7EDB /* RStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F708F85222BE565008C7EDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F708F8F222BE7C1008C7EDB /* LOLStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorageProtocol.swift; sourceTree = "<group>"; };
-		6F708F91222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorageManagerProtocol.swift; sourceTree = "<group>"; };
-		6F708F93222BE848008C7EDB /* LOLStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLStorage.swift; sourceTree = "<group>"; };
+		6F708F8F222BE7C1008C7EDB /* RStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RStorageProtocol.swift; sourceTree = "<group>"; };
+		6F708F91222BE7E7008C7EDB /* RStorageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RStorageManagerProtocol.swift; sourceTree = "<group>"; };
+		6F708F93222BE848008C7EDB /* RStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RStorage.swift; sourceTree = "<group>"; };
+		6FECADC722383BFD00B0D272 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F708F7F222BE565008C7EDB /* LOLStorage.framework in Frameworks */,
+				6F708F7F222BE565008C7EDB /* RStorage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,8 +61,8 @@
 		6F708F6B222BE565008C7EDB = {
 			isa = PBXGroup;
 			children = (
-				6F708F77222BE565008C7EDB /* LOLStorage */,
-				6F708F82222BE565008C7EDB /* LOLStorageTests */,
+				6F708F77222BE565008C7EDB /* RStorage */,
+				6F708F82222BE565008C7EDB /* RStorageTests */,
 				6F708F76222BE565008C7EDB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,31 +70,32 @@
 		6F708F76222BE565008C7EDB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6F708F75222BE565008C7EDB /* LOLStorage.framework */,
-				6F708F7E222BE565008C7EDB /* LOLStorageTests.xctest */,
+				6F708F75222BE565008C7EDB /* RStorage.framework */,
+				6F708F7E222BE565008C7EDB /* RStorageTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6F708F77222BE565008C7EDB /* LOLStorage */ = {
+		6F708F77222BE565008C7EDB /* RStorage */ = {
 			isa = PBXGroup;
 			children = (
-				6F708F78222BE565008C7EDB /* LOLStorage.h */,
+				6FECADC722383BFD00B0D272 /* Key.swift */,
+				6F708F91222BE7E7008C7EDB /* RStorageManagerProtocol.swift */,
+				6F708F8F222BE7C1008C7EDB /* RStorageProtocol.swift */,
+				6F708F93222BE848008C7EDB /* RStorage.swift */,
+				6F708F78222BE565008C7EDB /* RStorage.h */,
 				6F708F79222BE565008C7EDB /* Info.plist */,
-				6F708F91222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift */,
-				6F708F8F222BE7C1008C7EDB /* LOLStorageProtocol.swift */,
-				6F708F93222BE848008C7EDB /* LOLStorage.swift */,
 			);
-			path = LOLStorage;
+			path = RStorage;
 			sourceTree = "<group>";
 		};
-		6F708F82222BE565008C7EDB /* LOLStorageTests */ = {
+		6F708F82222BE565008C7EDB /* RStorageTests */ = {
 			isa = PBXGroup;
 			children = (
 				6F40A384222D29C900952D84 /* SimpleTests.swift */,
 				6F708F85222BE565008C7EDB /* Info.plist */,
 			);
-			path = LOLStorageTests;
+			path = RStorageTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,16 +105,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F708F86222BE565008C7EDB /* LOLStorage.h in Headers */,
+				6F708F86222BE565008C7EDB /* RStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6F708F74222BE565008C7EDB /* LOLStorage */ = {
+		6F708F74222BE565008C7EDB /* RStorage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6F708F89222BE565008C7EDB /* Build configuration list for PBXNativeTarget "LOLStorage" */;
+			buildConfigurationList = 6F708F89222BE565008C7EDB /* Build configuration list for PBXNativeTarget "RStorage" */;
 			buildPhases = (
 				6F708F70222BE565008C7EDB /* Headers */,
 				6F708F71222BE565008C7EDB /* Sources */,
@@ -122,14 +125,14 @@
 			);
 			dependencies = (
 			);
-			name = LOLStorage;
-			productName = LOLStorage;
-			productReference = 6F708F75222BE565008C7EDB /* LOLStorage.framework */;
+			name = RStorage;
+			productName = RStorage;
+			productReference = 6F708F75222BE565008C7EDB /* RStorage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		6F708F7D222BE565008C7EDB /* LOLStorageTests */ = {
+		6F708F7D222BE565008C7EDB /* RStorageTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6F708F8C222BE565008C7EDB /* Build configuration list for PBXNativeTarget "LOLStorageTests" */;
+			buildConfigurationList = 6F708F8C222BE565008C7EDB /* Build configuration list for PBXNativeTarget "RStorageTests" */;
 			buildPhases = (
 				6F708F7A222BE565008C7EDB /* Sources */,
 				6F708F7B222BE565008C7EDB /* Frameworks */,
@@ -140,9 +143,9 @@
 			dependencies = (
 				6F708F81222BE565008C7EDB /* PBXTargetDependency */,
 			);
-			name = LOLStorageTests;
-			productName = LOLStorageTests;
-			productReference = 6F708F7E222BE565008C7EDB /* LOLStorageTests.xctest */;
+			name = RStorageTests;
+			productName = RStorageTests;
+			productReference = 6F708F7E222BE565008C7EDB /* RStorageTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -164,7 +167,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6F708F6F222BE565008C7EDB /* Build configuration list for PBXProject "LOLStorage" */;
+			buildConfigurationList = 6F708F6F222BE565008C7EDB /* Build configuration list for PBXProject "RStorage" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -176,8 +179,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6F708F74222BE565008C7EDB /* LOLStorage */,
-				6F708F7D222BE565008C7EDB /* LOLStorageTests */,
+				6F708F74222BE565008C7EDB /* RStorage */,
+				6F708F7D222BE565008C7EDB /* RStorageTests */,
 			);
 		};
 /* End PBXProject section */
@@ -204,9 +207,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F708F94222BE848008C7EDB /* LOLStorage.swift in Sources */,
-				6F708F90222BE7C1008C7EDB /* LOLStorageProtocol.swift in Sources */,
-				6F708F92222BE7E7008C7EDB /* LOLStorageManagerProtocol.swift in Sources */,
+				6F708F94222BE848008C7EDB /* RStorage.swift in Sources */,
+				6FECADC822383BFD00B0D272 /* Key.swift in Sources */,
+				6F708F90222BE7C1008C7EDB /* RStorageProtocol.swift in Sources */,
+				6F708F92222BE7E7008C7EDB /* RStorageManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +227,7 @@
 /* Begin PBXTargetDependency section */
 		6F708F81222BE565008C7EDB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6F708F74222BE565008C7EDB /* LOLStorage */;
+			target = 6F708F74222BE565008C7EDB /* RStorage */;
 			targetProxy = 6F708F80222BE565008C7EDB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -361,14 +365,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = LOLStorage/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RStorage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.LOLStorage";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.RStorage";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -387,14 +391,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = LOLStorage/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RStorage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.LOLStorage";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.RStorage";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -407,13 +411,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = LOLStorageTests/Info.plist;
+				INFOPLIST_FILE = RStorageTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.LOLStorageTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.RStorageTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -425,13 +429,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = LOLStorageTests/Info.plist;
+				INFOPLIST_FILE = RStorageTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.LOLStorageTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.RStorageTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -441,7 +445,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6F708F6F222BE565008C7EDB /* Build configuration list for PBXProject "LOLStorage" */ = {
+		6F708F6F222BE565008C7EDB /* Build configuration list for PBXProject "RStorage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F708F87222BE565008C7EDB /* Debug */,
@@ -450,7 +454,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6F708F89222BE565008C7EDB /* Build configuration list for PBXNativeTarget "LOLStorage" */ = {
+		6F708F89222BE565008C7EDB /* Build configuration list for PBXNativeTarget "RStorage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F708F8A222BE565008C7EDB /* Debug */,
@@ -459,7 +463,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6F708F8C222BE565008C7EDB /* Build configuration list for PBXNativeTarget "LOLStorageTests" */ = {
+		6F708F8C222BE565008C7EDB /* Build configuration list for PBXNativeTarget "RStorageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F708F8D222BE565008C7EDB /* Debug */,
