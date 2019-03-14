@@ -25,74 +25,76 @@ open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol {
         let data: Data = try self.jsonEncoder.encode(value)
         
         if key.manager.useCache {
-            self.cache[key.name] = data
+            self.cache[key.manager.name] = data
         }
         
         if key.manager.usePersistentStorage {
-            self.defaults.set(data, forKey: key.name)
+            self.defaults.set(data, forKey: key.manager.name)
         }
         
         assert(key.manager.useCache || key.manager.usePersistentStorage,
-               "The data \(key.name) is not cached; check the information in RStorageManagerProtocol")
+               "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
     }
     
     public func load<T>(key: Key<T, Manager>) throws -> T? where T : Codable {
-        if key.manager.useCache, let cachedData = self.cache[key.name] {
+        if key.manager.useCache, let cachedData = self.cache[key.manager.name] {
             return try self.jsonDecoder.decode(T.self, from: cachedData)
         }
         
         if key.manager.usePersistentStorage {
-            guard let data = self.defaults.data(forKey: key.name),
+            guard let data = self.defaults.data(forKey: key.manager.name),
                 let value = try? self.jsonDecoder.decode(T.self, from: data)
                 else { return nil }
             
-            if key.manager.useCache { self.cache[key.name] = data }
+            if key.manager.useCache { self.cache[key.manager.name] = data }
             
             return value
         }
         
-        assertionFailure("The data \(key.name) is not cached; check the information in RStorageManagerProtocol")
+        assert(key.manager.useCache || key.manager.usePersistentStorage,
+               "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
         return nil
     }
     
     public func isExists<T>(key: Key<T, Manager>) -> Bool where T : Codable {
-        if key.manager.useCache { return self.cache[key.name] != nil }
+        if key.manager.useCache { return self.cache[key.manager.name] != nil }
         
         if key.manager.usePersistentStorage {
-            return self.defaults.data(forKey: key.name) != nil
+            return self.defaults.data(forKey: key.manager.name) != nil
         }
         
-        assertionFailure("The data \(key.name) is not cached; check the information in RStorageManagerProtocol")
+        assert(key.manager.useCache || key.manager.usePersistentStorage,
+               "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
         return false
     }
     
     public func remove<T>(key: Key<T, Manager>) where T : Codable {
         if key.manager.useCache {
-            self.cache.removeValue(forKey: key.name)
+            self.cache.removeValue(forKey: key.manager.name)
         }
         
         if key.manager.usePersistentStorage {
-            self.defaults.removeObject(forKey: key.name)
+            self.defaults.removeObject(forKey: key.manager.name)
         }
         
         assert(key.manager.useCache || key.manager.usePersistentStorage,
-               "The data \(key.name) is not cached; check the information in RStorageManagerProtocol")
+               "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
     }
     
     public func removeAll(without: Manager...) {
         for row in Manager.allCases {
-            if without.contains(where: { $0.cacheName == row.cacheName }) { continue }
+            if without.contains(where: { $0.name == row.name }) { continue }
             
             if row.useCache {
-                _ = self.cache.removeValue(forKey: row.cacheName)
+                _ = self.cache.removeValue(forKey: row.name)
             }
             
             if row.usePersistentStorage {
-                self.defaults.removeObject(forKey: row.cacheName)
+                self.defaults.removeObject(forKey: row.name)
             }
             
             assert(row.useCache || row.usePersistentStorage,
-                   "The data \(row.cacheName) is not cached; check the information in RStorageManagerProtocol")
+                   "The data \(row.name) is not cached; check the information in RStorageManagerProtocol")
         }
     }
 }

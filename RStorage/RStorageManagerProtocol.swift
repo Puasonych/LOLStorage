@@ -22,5 +22,5 @@ public protocol RStorageManagerProtocol: CaseIterable {
     var usePersistentStorage: Bool { get }
     
     /// Current cache name
-    var cacheName: String { get }
+    var name: String { get }
 }

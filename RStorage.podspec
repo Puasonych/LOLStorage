@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
   spec.version            = '1.0.0'
   spec.summary            = 'UserDefaults abstraction framework with caching'
   spec.homepage           = 'https://github.com/Puasonych/RStorage'
-  spec.license            = { :type => 'MIT' }
+  spec.license            = { :type => 'MIT', :file => 'LICENSE' }
   spec.author             = { 'Erik Basargin' => 'basargin.erik@gmail.com' }
   spec.social_media_url   = 'https://twitter.com/Puasonych'
   spec.source             = { :git => 'https://github.com/Puasonych/RStorage.git', :tag => spec.version }
