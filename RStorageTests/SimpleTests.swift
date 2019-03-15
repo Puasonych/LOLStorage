@@ -15,7 +15,6 @@ struct Struct1: Codable {
 
 struct Struct2: Codable {
     let name: String
-    let substruct: Struct1
 }
 
 enum KeyManager: String, RStorageManagerProtocol {
