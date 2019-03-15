@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:LOLStorage.xcodeproj">
+      location = "self:/Users/puasonych/Work/LOLStorage/RStorage.xcodeproj">
    </FileRef>
 </Workspace>
