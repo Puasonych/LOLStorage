@@ -61,20 +61,12 @@ enum KeyManager: String, RStorageManagerProtocol {
 class SimpleTests: XCTestCase {
     let storage: RStorage<KeyManager> = RStorage()
     
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testSimpleFlow() {
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(name: "Struct1")),
-                         "Something went wrong when encoding the object")
+                         "Something went wrong while trying to save struct")
         
         guard let data = try? storage.load(key: KeyManager.keys.struct1), let object = data else {
-            XCTAssert(false, "Something went wrong when decoding the object")
+            XCTAssert(false, "Something went wrong when trying to load object")
             return
         }
         
@@ -83,7 +75,7 @@ class SimpleTests: XCTestCase {
         storage.remove(key: KeyManager.keys.struct1)
         
         guard let nilData = try? storage.load(key: KeyManager.keys.struct1) else {
-            XCTAssert(false, "Something went wrong when decoding the object")
+            XCTAssert(false, "Something went wrong when trying to load object")
             return
         }
         
@@ -92,17 +84,17 @@ class SimpleTests: XCTestCase {
     
     func testSimpleFlowWithSameStructures() {
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(name: "Struct1")),
-                         "Save 'Struct1': Something went wrong when encoding the object")
+                         "Save 'Struct1': Something went wrong while trying to save struct")
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct3, value: Struct1(name: "Struct3")),
-                         "Save 'Struct3': Something went wrong when encoding the object")
+                         "Save 'Struct3': Something went wrong while trying to save struct")
         
         guard let data1 = try? storage.load(key: KeyManager.keys.struct1), let struct1 = data1 else {
-            XCTAssert(false, "Load 'Struct1': Something went wrong when decoding the object")
+            XCTAssert(false, "Load 'Struct1': Something went wrong when trying to load object")
             return
         }
         
         guard let data2 = try? storage.load(key: KeyManager.keys.struct3), let struct3 = data2 else {
-            XCTAssert(false, "Load 'Struct3': Something went wrong when decoding the object")
+            XCTAssert(false, "Load 'Struct3': Something went wrong when trying to load object")
             return
         }
         
@@ -112,23 +104,16 @@ class SimpleTests: XCTestCase {
         storage.removeAll()
         
         guard let nilData1 = try? storage.load(key: KeyManager.keys.struct1) else {
-            XCTAssert(false, "Load 'Struct1': Something went wrong when decoding the object")
+            XCTAssert(false, "Load 'Struct1': Something went wrong when trying to load object")
             return
         }
         
         guard let nilData2 = try? storage.load(key: KeyManager.keys.struct3) else {
-            XCTAssert(false, "Load 'Struct3': Something went wrong when decoding the object")
+            XCTAssert(false, "Load 'Struct3': Something went wrong when trying to load object")
             return
         }
         
         XCTAssertNil(nilData1, "'Struct1': The data remained in the cache")
         XCTAssertNil(nilData2, "'Struct3': The data remained in the cache")
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 }
