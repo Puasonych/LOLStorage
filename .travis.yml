@@ -10,4 +10,4 @@ script:
   - xcodebuild -scheme RStorage -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=12.1' build test -enableCodeCoverage YES | xcpretty -c
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -X xcodellvm
