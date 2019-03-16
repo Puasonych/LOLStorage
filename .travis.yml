@@ -7,7 +7,7 @@ os:
 osx_image: xcode10.1
 
 script:
-  - xcodebuild -scheme RStorage -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=12.1' build test -enableCodeCoverage YES | xcpretty -c
+  - xcodebuild -scheme RStorage -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=12.1' build test | xcpretty
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -X xcodellvm
+  - bash <(curl -s https://codecov.io/bash) -f reports/cobertura.xml -X coveragepy -X gcov -X xcode
