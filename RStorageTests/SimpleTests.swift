@@ -115,4 +115,21 @@ class SimpleTests: XCTestCase {
         XCTAssertNil(nilData1, "'Struct1': The data remained in the cache")
         XCTAssertNil(nilData2, "'Struct3': The data remained in the cache")
     }
+    
+    func testExistsMethod() {
+        guard let defaults = UserDefaults(suiteName: "testExistsMethod") else {
+            XCTFail("Can not create defaults for suite")
+            return
+        }
+        
+        let rStorage: RStorage<KeyManager> = RStorage.init(defaults: defaults)
+        
+        XCTAssertNoThrow(try rStorage.save(key: KeyManager.keys.struct1, value: Struct1(name: "JustExampleStruct")),
+                         "Can not save desired struct, got an exception")
+        
+        XCTAssertTrue(rStorage.isExists(key: KeyManager.keys.struct1), "Struct must exist in storage")
+        XCTAssertFalse(rStorage.isExists(key: KeyManager.keys.struct2), "This key must be empty")
+        
+        defaults.removeSuite(named: "testExistsMethod")
+    }
 }
