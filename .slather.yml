@@ -1,0 +1,6 @@
+coverage_service: cobertura_xml
+xcodeproj: RStorage.xcodeproj
+scheme: RStorage
+output_directory: reports
+ignore:
+  - RStorageTests/*
