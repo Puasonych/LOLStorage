@@ -9,5 +9,5 @@
 import Foundation
 
 public struct Key<T: Codable, Manager: RStorageManagerProtocol> {
-    public let manager: Manager
+    let manager: Manager
 }
