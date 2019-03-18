@@ -8,12 +8,12 @@
 
 import Foundation
 
-open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol {
+open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorageInternalProtocol {
     private let defaults: UserDefaults
     private let jsonEncoder: JSONEncoder
     private let jsonDecoder: JSONDecoder
 
-    private lazy var cache: [String: Data] = [:]
+    internal lazy var cache: [String: Data] = [:]
     
     public init(defaults: UserDefaults = UserDefaults.standard, jsonEncoder: JSONEncoder = JSONEncoder(), jsonDecoder: JSONDecoder = JSONDecoder()) {
         self.defaults = defaults
