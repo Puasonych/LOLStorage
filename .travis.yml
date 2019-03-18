@@ -11,7 +11,7 @@ before_install:
   - gem install slather --no-ri --no-rdoc
 
 script:
-  - set -o pipefail && xcodebuild test -enableCodeCoverage YES -project RStorage.xcodeproj -scheme RStorage -sdk $TEST_SDK -destination "platform=iOS Simulator,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES
+  - set -o pipefail && xcodebuild test -enableCodeCoverage YES -project RStorage.xcodeproj -scheme RStorage -sdk $TEST_SDK -destination "platform=iOS Simulator,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | xcpretty
 
 after_success:
   - slather
