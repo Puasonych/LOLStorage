@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F40A385222D29C900952D84 /* SimpleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F40A384222D29C900952D84 /* SimpleTests.swift */; };
+		6F10B721223FB34000C84CDB /* RStorageInternalProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F10B720223FB34000C84CDB /* RStorageInternalProtocol.swift */; };
+		6F40A385222D29C900952D84 /* CacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F40A384222D29C900952D84 /* CacheTests.swift */; };
 		6F708F7F222BE565008C7EDB /* RStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F708F75222BE565008C7EDB /* RStorage.framework */; };
 		6F708F86222BE565008C7EDB /* RStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F708F78222BE565008C7EDB /* RStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F708F90222BE7C1008C7EDB /* RStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F8F222BE7C1008C7EDB /* RStorageProtocol.swift */; };
@@ -28,7 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6F40A384222D29C900952D84 /* SimpleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTests.swift; sourceTree = "<group>"; };
+		6F10B720223FB34000C84CDB /* RStorageInternalProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RStorageInternalProtocol.swift; sourceTree = "<group>"; };
+		6F40A384222D29C900952D84 /* CacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheTests.swift; sourceTree = "<group>"; };
 		6F708F75222BE565008C7EDB /* RStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F708F78222BE565008C7EDB /* RStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RStorage.h; sourceTree = "<group>"; };
 		6F708F79222BE565008C7EDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				6FECADC722383BFD00B0D272 /* Key.swift */,
 				6F708F91222BE7E7008C7EDB /* RStorageManagerProtocol.swift */,
 				6F708F8F222BE7C1008C7EDB /* RStorageProtocol.swift */,
+				6F10B720223FB34000C84CDB /* RStorageInternalProtocol.swift */,
 				6F708F93222BE848008C7EDB /* RStorage.swift */,
 				6F708F78222BE565008C7EDB /* RStorage.h */,
 				6F708F79222BE565008C7EDB /* Info.plist */,
@@ -94,9 +97,9 @@
 		6F708F82222BE565008C7EDB /* RStorageTests */ = {
 			isa = PBXGroup;
 			children = (
-				6F40A384222D29C900952D84 /* SimpleTests.swift */,
-				6F708F85222BE565008C7EDB /* Info.plist */,
+				6F40A384222D29C900952D84 /* CacheTests.swift */,
 				FCC6CFC1223EA863004DFD15 /* PersistenceTests.swift */,
+				6F708F85222BE565008C7EDB /* Info.plist */,
 			);
 			path = RStorageTests;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F10B721223FB34000C84CDB /* RStorageInternalProtocol.swift in Sources */,
 				6F708F94222BE848008C7EDB /* RStorage.swift in Sources */,
 				6FECADC822383BFD00B0D272 /* Key.swift in Sources */,
 				6F708F90222BE7C1008C7EDB /* RStorageProtocol.swift in Sources */,
@@ -221,7 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F40A385222D29C900952D84 /* SimpleTests.swift in Sources */,
+				6F40A385222D29C900952D84 /* CacheTests.swift in Sources */,
 				FCC6CFC2223EA863004DFD15 /* PersistenceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
