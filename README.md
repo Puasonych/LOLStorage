@@ -62,8 +62,8 @@ enum KeyManager: String, RStorageManagerProtocol {
     
     static var keys: SupportedKeys {
         return (
-            Key(manager: .keyOne),
-            Key(manager: .keyTwo)
+            Key(.keyOne),
+            Key(.keyTwo)
         )
     }
 

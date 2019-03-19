@@ -32,9 +32,9 @@ class PersistenceTests: XCTestCase {
         
         static var keys: SupportedKeys {
             return (
-                Key(manager: .struct1),
-                Key(manager: .struct2),
-                Key(manager: .struct3)
+                Key(.struct1),
+                Key(.struct2),
+                Key(.struct3)
             )
         }
         
