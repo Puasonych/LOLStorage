@@ -10,4 +10,8 @@ import Foundation
 
 public struct Key<T: Codable, Manager: RStorageManagerProtocol> {
     let manager: Manager
+    
+    public init(_ manager: Manager) {
+        self.manager = manager
+    }
 }
