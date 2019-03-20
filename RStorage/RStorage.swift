@@ -61,9 +61,15 @@ open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorag
         assert(key.manager.useCache || key.manager.usePersistentStorage,
                "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
         
-        if key.manager.useCache && self.cache[key.manager.name] != nil { return true }
+        if key.manager.useCache, self.cache[key.manager.name] != nil { return true }
         
-        return self.defaults.data(forKey: key.manager.name) != nil
+        if key.manager.usePersistentStorage, let data = self.defaults.data(forKey: key.manager.name) {
+            if key.manager.useCache { self.cache[key.manager.name] = data }
+            
+            return true
+        }
+        
+        return false
     }
     
     public func remove<T>(key: Key<T, Manager>) where T : Codable {

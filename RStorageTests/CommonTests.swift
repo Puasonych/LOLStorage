@@ -43,7 +43,7 @@ class CommonTests: XCTestCase {
     
     // MARK: - Tests
     func testExistsWithCachedData() {
-        guard let defaults = UserDefaults(suiteName: "ExistingTest") else {
+        guard let defaults = UserDefaults(suiteName: "ExistsWithCachedDataTest") else {
             XCTFail("Can not create defaults for tests")
             return
         }
@@ -57,10 +57,12 @@ class CommonTests: XCTestCase {
         defaults.set(data, forKey: KeyManager.struct1.name)
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
+        
+        defaults.removeSuite(named: "ExistsWithCachedDataTest")
     }
     
     func testExistsWithoutCachedData() {
-        guard let defaults = UserDefaults(suiteName: "ExistingTest") else {
+        guard let defaults = UserDefaults(suiteName: "ExistsWithoutCachedData") else {
             XCTFail("Can not create defaults for tests")
             return
         }
@@ -72,5 +74,7 @@ class CommonTests: XCTestCase {
         defaults.set(data, forKey: KeyManager.struct1.name)
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
+        
+        defaults.removeSuite(named: "ExistsWithoutCachedData")
     }
 }
