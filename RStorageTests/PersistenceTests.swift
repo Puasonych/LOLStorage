@@ -60,7 +60,7 @@ class PersistenceTests: XCTestCase {
         
         XCTAssertNotNil(data, "Storage empty after save")
         
-        defaults.removeSuite(named: "BasicSavigTest")
+        defaults.removePersistentDomain(forName: "BasicSavigTest")
     }
     
     func testLoadingFromDefaults() {
@@ -80,7 +80,7 @@ class PersistenceTests: XCTestCase {
         
         XCTAssertEqual(struct1.text, "Hello, Defaults!", "Text must be equal in defaults and loaded struct")
         
-        defaults.removeSuite(named: "BasicLoadingTest")
+        defaults.removePersistentDomain(forName: "BasicLoadingTest")
     }
     
     func testExistsInStorage() {
@@ -94,8 +94,8 @@ class PersistenceTests: XCTestCase {
         defaults.set("{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
-        
-        defaults.removeSuite(named: "ExistingTest")
+
+        defaults.removePersistentDomain(forName: "ExistingTest")
     }
     
     func testRemoveFromStorage() {
@@ -113,8 +113,8 @@ class PersistenceTests: XCTestCase {
         storage.remove(key: KeyManager.keys.struct1)
         
         XCTAssertNil(defaults.data(forKey: KeyManager.struct1.name), "Record must be removed from storage")
-        
-        defaults.removeSuite(named: "RemovalTest")
+
+        defaults.removePersistentDomain(forName: "RemovalTest")
     }
     
     func testRemoveAll() {
@@ -136,7 +136,7 @@ class PersistenceTests: XCTestCase {
         XCTAssertNil(defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must be removed from storage")
         XCTAssertNil(defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must be removed from storage")
         
-        defaults.removeSuite(named: "RemovalAllTest")
+        defaults.removePersistentDomain(forName: "RemovalAllTest")
     }
     
     func testRemoveExcept() {
@@ -157,8 +157,8 @@ class PersistenceTests: XCTestCase {
         
         XCTAssertNil(defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must be removed from storage")
         XCTAssertNotNil(defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must stay in storage")
-        
-        defaults.removeSuite(named: "AdvancedRemovalTest")
+
+        defaults.removePersistentDomain(forName: "AdvancedRemovalTest")
     }
     
     func testSaveOneTypeForManyKeys() {
@@ -181,7 +181,7 @@ class PersistenceTests: XCTestCase {
         XCTAssertNotNil(data2, "Storage empty after save")
         XCTAssertNotEqual(data1, data2, "When saving data of the same type something went wrong")
         
-        defaults.removeSuite(named: "SaveOneTypeForManyKeysTest")
+        defaults.removePersistentDomain(forName: "SaveOneTypeForManyKeysTest")
     }
     
     func testLoadingOneTypeForManyKeys() {
@@ -207,7 +207,7 @@ class PersistenceTests: XCTestCase {
         
         XCTAssertEqual(struct1.text, "Hello, Defaults, 1!", "Text must be equal in defaults and loaded struct")
         XCTAssertEqual(struct3.text, "Hello, Defaults, 2!", "Text must be equal in defaults and loaded struct")
-        
-        defaults.removeSuite(named: "LoadingOneTypeForManyKeysTest")
+
+        defaults.removePersistentDomain(forName: "LoadingOneTypeForManyKeysTest")
     }
 }

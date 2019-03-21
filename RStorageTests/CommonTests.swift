@@ -57,8 +57,8 @@ class CommonTests: XCTestCase {
         defaults.set(data, forKey: KeyManager.struct1.name)
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
-        
-        defaults.removeSuite(named: "ExistsWithCachedDataTest")
+
+        defaults.removePersistentDomain(forName: "ExistsWithCachedDataTest")
     }
     
     func testExistsWithoutCachedData() {
@@ -75,6 +75,6 @@ class CommonTests: XCTestCase {
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
         
-        defaults.removeSuite(named: "ExistsWithoutCachedData")
+        defaults.removePersistentDomain(forName: "ExistsWithoutCachedData")
     }
 }
