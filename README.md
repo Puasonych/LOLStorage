@@ -1,4 +1,4 @@
-# RStorage [![Build Status](https://travis-ci.com/Puasonych/RStorage.svg?branch=master)](https://travis-ci.com/Puasonych/RStorage) [![Version](https://img.shields.io/cocoapods/v/RStorage.svg?style=flat)](https://cocoapods.org/pods/RStorage) [![codebeat badge](https://codebeat.co/badges/b4d848ef-9276-4b4d-8ac2-8dcff3b4b7aa)](https://codebeat.co/projects/github-com-puasonych-rstorage-master) [![codecov](https://codecov.io/gh/Puasonych/RStorage/branch/master/graph/badge.svg)](https://codecov.io/gh/Puasonych/RStorage)
+# RStorage [![Build Status](https://travis-ci.com/three-man-army/RStorage.svg?branch=master)](https://travis-ci.com/three-man-army/RStorage) [![Version](https://img.shields.io/cocoapods/v/RStorage.svg?style=flat)](https://cocoapods.org/pods/RStorage) [![codebeat badge](https://codebeat.co/badges/b4d848ef-9276-4b4d-8ac2-8dcff3b4b7aa)](https://codebeat.co/projects/github-com-puasonych-rstorage-master) [![codecov](https://codecov.io/gh/Puasonych/RStorage/branch/master/graph/badge.svg)](https://codecov.io/gh/Puasonych/RStorage)
 
 UserDefaults abstraction framework with caching
 
