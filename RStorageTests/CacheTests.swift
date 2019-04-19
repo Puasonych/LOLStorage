@@ -46,7 +46,10 @@ class CacheTests: XCTestCase {
     
     // MARK: - Tests
     func testSavingToCache() {
-        let storage: RStorage<KeyManager> = RStorage()
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
+            return
+        }
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(text: "Example Text")),
                          "Storage must save data")
@@ -55,11 +58,14 @@ class CacheTests: XCTestCase {
     }
     
     func testLoadingFromCache() {
-        let storage: RStorage<KeyManager> = RStorage()
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
+            return
+        }
         
         storage.cache[KeyManager.struct1.name] = "{\"text\": \"Hello, Cache!\"}".data(using: String.Encoding.utf8)
         
-        guard let data1 = try? storage.load(key: KeyManager.keys.struct1), let struct1 = data1 else {
+        guard let struct1 = try? storage.load(key: KeyManager.keys.struct1) else {
             XCTFail("Can not load from storage")
             return
         }
@@ -68,7 +74,10 @@ class CacheTests: XCTestCase {
     }
     
     func testExistsInStorage() {
-        let storage: RStorage<KeyManager> = RStorage()
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
+            return
+        }
         
         storage.cache[KeyManager.struct1.name] = "{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8)
         
@@ -76,7 +85,10 @@ class CacheTests: XCTestCase {
     }
     
     func testRemoveFromStorage() {
-        let storage: RStorage<KeyManager> = RStorage()
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
+            return
+        }
         
         storage.cache[KeyManager.struct1.name] = "{\"text\": \"Record for removal\"}".data(using: String.Encoding.utf8)
         
@@ -86,7 +98,10 @@ class CacheTests: XCTestCase {
     }
     
     func testRemoveAll() {
-        let storage: RStorage<KeyManager> = RStorage()
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
+            return
+        }
         
         storage.cache[KeyManager.struct1.name] = "{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8)
         storage.cache[KeyManager.struct2.name] = "{\"name\": \"Removal Name\"}}".data(using: String.Encoding.utf8)
@@ -98,7 +113,10 @@ class CacheTests: XCTestCase {
     }
     
     func testRemoveExcept() {
-        let storage: RStorage<KeyManager> = RStorage()
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
+            return
+        }
         
         storage.cache[KeyManager.struct1.name] = "{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8)
         storage.cache[KeyManager.struct2.name] = "{\"name\": \"Removal Name\"}}".data(using: String.Encoding.utf8)
@@ -110,7 +128,10 @@ class CacheTests: XCTestCase {
     }
     
     func testSaveOneTypeForManyKeys() {
-        let storage: RStorage<KeyManager> = RStorage()
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
+            return
+        }
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(text: "Example Text 1")),
                          "Storage must save data")
@@ -126,17 +147,20 @@ class CacheTests: XCTestCase {
     }
     
     func testLoadingOneTypeForManyKeys() {
-        let storage: RStorage<KeyManager> = RStorage()
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
+            return
+        }
         
         storage.cache[KeyManager.struct1.name] = "{\"text\": \"Hello, Cache, 1!\"}".data(using: String.Encoding.utf8)
         storage.cache[KeyManager.struct3.name] = "{\"text\": \"Hello, Cache, 2!\"}".data(using: String.Encoding.utf8)
 
-        guard let data1 = try? storage.load(key: KeyManager.keys.struct1), let struct1 = data1 else {
+        guard let struct1 = try? storage.load(key: KeyManager.keys.struct1) else {
             XCTFail("Can not load from storage")
             return
         }
         
-        guard let data2 = try? storage.load(key: KeyManager.keys.struct3), let struct3 = data2 else {
+        guard let struct3 = try? storage.load(key: KeyManager.keys.struct3) else {
             XCTFail("Can not load from storage")
             return
         }

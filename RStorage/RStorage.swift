@@ -9,14 +9,19 @@
 import Foundation
 
 open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorageInternalProtocol {
-    private let defaults: UserDefaults
     private let jsonEncoder: JSONEncoder
     private let jsonDecoder: JSONDecoder
 
+    internal var domain: String
+    internal var defaults: UserDefaults
+    
     internal lazy var cache: [String: Data] = [:]
     
-    public init(defaults: UserDefaults = UserDefaults.standard, jsonEncoder: JSONEncoder = JSONEncoder(), jsonDecoder: JSONDecoder = JSONDecoder()) {
-        self.defaults = defaults
+    public init?(jsonEncoder: JSONEncoder = JSONEncoder(), jsonDecoder: JSONDecoder = JSONDecoder()) {
+        self.domain = "\(type(of: self))"
+        guard let userDefaults = UserDefaults(suiteName: self.domain) else { return nil }
+        
+        self.defaults = userDefaults
         self.jsonEncoder = jsonEncoder
         self.jsonDecoder = jsonDecoder
     }
@@ -86,19 +91,27 @@ open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorag
     }
     
     public func removeAll(without: Manager...) {
-        for row in Manager.allCases {
-            assert(row.useCache || row.usePersistentStorage,
-                   "The data \(row.name) is not cached; check the information in RStorageManagerProtocol")
-            
-            if without.contains(where: { $0.name == row.name }) { continue }
-            
-            if row.useCache {
-                self.cache[row.name] = nil
-            }
-            
-            if row.usePersistentStorage {
-                self.defaults.removeObject(forKey: row.name)
-            }
+        if without.isEmpty {
+            self.cache = [:]
+            self.defaults.removePersistentDomain(forName: self.domain)
+            return
         }
+
+        for key in self.getAllKeys().symmetricDifference(without.map({ return $0.name })) {
+            self.cache[key] = nil
+            self.defaults.removeObject(forKey: key)
+        }
+    }
+
+    func getAllKeys() -> Set<String> {
+        var result: Set<String> = Set()
+        
+        for key in Manager.allCases { result.insert(key.name) }
+
+        guard let otherKeys = self.defaults.persistentDomain(forName: self.domain) else { return result }
+
+        for (key, _) in otherKeys { result.insert(key) }
+
+        return result
     }
 }

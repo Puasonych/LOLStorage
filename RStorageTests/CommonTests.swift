@@ -43,38 +43,34 @@ class CommonTests: XCTestCase {
     
     // MARK: - Tests
     func testExistsWithCachedData() {
-        guard let defaults = UserDefaults(suiteName: "ExistsWithCachedDataTest") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
-        
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
         
         let data = "{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8)
         
         storage.cache[KeyManager.struct1.name] = data
         
-        defaults.set(data, forKey: KeyManager.struct1.name)
+        storage.defaults.set(data, forKey: KeyManager.struct1.name)
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
 
-        defaults.removePersistentDomain(forName: "ExistsWithCachedDataTest")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
     
     func testExistsWithoutCachedData() {
-        guard let defaults = UserDefaults(suiteName: "ExistsWithoutCachedData") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
         
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
-        
         let data = "{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8)
         
-        defaults.set(data, forKey: KeyManager.struct1.name)
+        storage.defaults.set(data, forKey: KeyManager.struct1.name)
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
         
-        defaults.removePersistentDomain(forName: "ExistsWithoutCachedData")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
 }

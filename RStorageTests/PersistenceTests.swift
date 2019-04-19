@@ -46,161 +46,145 @@ class PersistenceTests: XCTestCase {
     
     // MARK: - Tests
     func testSavingToDefaults() {
-        guard let defaults = UserDefaults(suiteName: "BasicSavigTest") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
-        
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(text: "Example Text")),
                          "Storage must save data")
         
-        let data = defaults.data(forKey: KeyManager.struct1.name)
+        let data = storage.defaults.data(forKey: KeyManager.struct1.name)
         
         XCTAssertNotNil(data, "Storage empty after save")
         
-        defaults.removePersistentDomain(forName: "BasicSavigTest")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
     
     func testLoadingFromDefaults() {
-        guard let defaults = UserDefaults(suiteName: "BasicLoadingTest") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
         
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
+        storage.defaults.set("{\"text\": \"Hello, Defaults!\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
-        defaults.set("{\"text\": \"Hello, Defaults!\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
-        
-        guard let data1 = try? storage.load(key: KeyManager.keys.struct1), let struct1 = data1 else {
+        guard let struct1 = try? storage.load(key: KeyManager.keys.struct1) else {
             XCTFail("Can not load from storage")
             return
         }
         
         XCTAssertEqual(struct1.text, "Hello, Defaults!", "Text must be equal in defaults and loaded struct")
         
-        defaults.removePersistentDomain(forName: "BasicLoadingTest")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
     
     func testExistsInStorage() {
-        guard let defaults = UserDefaults(suiteName: "ExistingTest") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
         
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
-        
-        defaults.set("{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set("{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
 
-        defaults.removePersistentDomain(forName: "ExistingTest")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
     
     func testRemoveFromStorage() {
-        guard let defaults = UserDefaults(suiteName: "RemovalTest") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
         
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
+        storage.defaults.set("{\"text\": \"Record for removal\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
-        defaults.set("{\"text\": \"Record for removal\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
-        
-        XCTAssertNotNil(defaults.data(forKey: KeyManager.struct1.name), "Record must exists in storage")
+        XCTAssertNotNil(storage.defaults.data(forKey: KeyManager.struct1.name), "Record must exists in storage")
         
         storage.remove(key: KeyManager.keys.struct1)
         
-        XCTAssertNil(defaults.data(forKey: KeyManager.struct1.name), "Record must be removed from storage")
+        XCTAssertNil(storage.defaults.data(forKey: KeyManager.struct1.name), "Record must be removed from storage")
 
-        defaults.removePersistentDomain(forName: "RemovalTest")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
     
     func testRemoveAll() {
-        guard let defaults = UserDefaults(suiteName: "RemovalAllTest") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
         
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
+        storage.defaults.set("{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set("{\"name\": \"Removal Name\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
         
-        defaults.set("{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
-        defaults.set("{\"name\": \"Removal Name\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
-        
-        XCTAssertNotNil(defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must exists in storage")
-        XCTAssertNotNil(defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must exists in storage")
+        XCTAssertNotNil(storage.defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must exists in storage")
+        XCTAssertNotNil(storage.defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must exists in storage")
         
         storage.removeAll()
         
-        XCTAssertNil(defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must be removed from storage")
-        XCTAssertNil(defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must be removed from storage")
+        XCTAssertNil(storage.defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must be removed from storage")
+        XCTAssertNil(storage.defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must be removed from storage")
         
-        defaults.removePersistentDomain(forName: "RemovalAllTest")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
     
     func testRemoveExcept() {
-        guard let defaults = UserDefaults(suiteName: "AdvancedRemovalTest") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
         
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
+        storage.defaults.set("{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set("{\"name\": \"Sample Name\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
         
-        defaults.set("{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
-        defaults.set("{\"name\": \"Sample Name\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
-        
-        XCTAssertNotNil(defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must exists in storage")
-        XCTAssertNotNil(defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must exists in storage")
+        XCTAssertNotNil(storage.defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must exists in storage")
+        XCTAssertNotNil(storage.defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must exists in storage")
         
         storage.removeAll(without: KeyManager.struct2)
         
-        XCTAssertNil(defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must be removed from storage")
-        XCTAssertNotNil(defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must stay in storage")
+        XCTAssertNil(storage.defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must be removed from storage")
+        XCTAssertNotNil(storage.defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must stay in storage")
 
-        defaults.removePersistentDomain(forName: "AdvancedRemovalTest")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
     
     func testSaveOneTypeForManyKeys() {
-        guard let defaults = UserDefaults(suiteName: "SaveOneTypeForManyKeysTest") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
-        
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(text: "Example Text 1")),
                          "Storage must save data")
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct3, value: Struct1(text: "Example Text 2")),
                          "Storage must save data")
         
-        let data1 = defaults.data(forKey: KeyManager.struct1.name)
-        let data2 = defaults.data(forKey: KeyManager.struct3.name)
+        let data1 = storage.defaults.data(forKey: KeyManager.struct1.name)
+        let data2 = storage.defaults.data(forKey: KeyManager.struct3.name)
         
         XCTAssertNotNil(data1, "Storage empty after save")
         XCTAssertNotNil(data2, "Storage empty after save")
         XCTAssertNotEqual(data1, data2, "When saving data of the same type something went wrong")
         
-        defaults.removePersistentDomain(forName: "SaveOneTypeForManyKeysTest")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
     
     func testLoadingOneTypeForManyKeys() {
-        guard let defaults = UserDefaults(suiteName: "LoadingOneTypeForManyKeysTest") else {
-            XCTFail("Can not create defaults for tests")
+        guard let storage: RStorage<KeyManager> = RStorage() else {
+            XCTFail("Can not create RStorage")
             return
         }
         
-        let storage: RStorage<KeyManager> = RStorage(defaults: defaults)
+        storage.defaults.set("{\"text\": \"Hello, Defaults, 1!\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set("{\"text\": \"Hello, Defaults, 2!\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct3.name)
         
-        defaults.set("{\"text\": \"Hello, Defaults, 1!\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
-        defaults.set("{\"text\": \"Hello, Defaults, 2!\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct3.name)
-        
-        guard let data1 = try? storage.load(key: KeyManager.keys.struct1), let struct1 = data1 else {
+        guard let struct1 = try? storage.load(key: KeyManager.keys.struct1) else {
             XCTFail("Can not load from storage")
             return
         }
         
-        guard let data2 = try? storage.load(key: KeyManager.keys.struct3), let struct3 = data2 else {
+        guard let struct3 = try? storage.load(key: KeyManager.keys.struct3) else {
             XCTFail("Can not load from storage")
             return
         }
@@ -208,6 +192,6 @@ class PersistenceTests: XCTestCase {
         XCTAssertEqual(struct1.text, "Hello, Defaults, 1!", "Text must be equal in defaults and loaded struct")
         XCTAssertEqual(struct3.text, "Hello, Defaults, 2!", "Text must be equal in defaults and loaded struct")
 
-        defaults.removePersistentDomain(forName: "LoadingOneTypeForManyKeysTest")
+        storage.defaults.removePersistentDomain(forName: storage.domain)
     }
 }
