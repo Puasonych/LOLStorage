@@ -13,7 +13,7 @@ env:
     - TEST_SDK=iphonesimulator12.2 OS=12.2 NAME='iPhone X'
 
 before_install:
-  - gem install slather --no-ri --no-rdoc
+  - gem install slather --no-document
 
 script:
   - set -o pipefail && xcodebuild test -enableCodeCoverage YES -project RStorage.xcodeproj -scheme RStorage -sdk $TEST_SDK -destination "platform=iOS Simulator,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | xcpretty
