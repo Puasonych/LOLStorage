@@ -91,4 +91,4 @@ let storage: RStorage<KeyManager> = RStorage()
 
 ## License
 
-RStorage is released under an MIT license. See [LICENSE](https://github.com/Puasonych/RStorage/blob/master/LICENSE) for more information.
+RStorage is released under an MIT license. See [LICENSE](https://github.com/ephedra-software/RStorage/blob/master/LICENSE) for more information.
