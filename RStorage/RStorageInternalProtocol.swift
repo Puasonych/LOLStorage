@@ -9,5 +9,7 @@
 import Foundation
 
 internal protocol RStorageInternalProtocol: class {
+    var domain: String { get }
+    var defaults: UserDefaults { get set }
     var cache: [String: Data] { get set }
 }

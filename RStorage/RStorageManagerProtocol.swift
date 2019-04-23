@@ -9,7 +9,7 @@
 import Foundation
 
 /// The protocol used to define the specifications necessary for a `RStorage`.
-public protocol RStorageManagerProtocol: CaseIterable {
+public protocol RStorageManagerProtocol: CaseIterable & Hashable {
     associatedtype SupportedKeys
     
     /// This is a supported keys
