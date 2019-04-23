@@ -43,10 +43,7 @@ class CommonTests: XCTestCase {
     
     // MARK: - Tests
     func testExistsWithCachedData() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         let data = "{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8)
         
@@ -60,10 +57,7 @@ class CommonTests: XCTestCase {
     }
     
     func testExistsWithoutCachedData() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         let data = "{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8)
         

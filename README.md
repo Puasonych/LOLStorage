@@ -9,7 +9,7 @@ UserDefaults abstraction framework with caching
 For RStorage, use the following entry in your Podfile:
 
 ```rb
-pod 'RStorage', '~> 1.0'
+pod 'RStorage', '~> 1.2'
 ```
 
 Then run `pod install`.

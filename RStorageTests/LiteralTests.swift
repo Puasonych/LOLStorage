@@ -44,10 +44,7 @@ class LiteralTests: XCTestCase {
     
     // MARK: - Tests
     func testSavingInt() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.myInt, value: 7),
                          "Storage must save data")
@@ -60,10 +57,7 @@ class LiteralTests: XCTestCase {
     }
     
     func testLoadingInt() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": 7}"#.data(using: String.Encoding.utf8), forKey: KeyManager.myInt.name)
         
@@ -78,10 +72,7 @@ class LiteralTests: XCTestCase {
     }
     
     func testSavingBool() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.myBool, value: true),
                          "Storage must save data")
@@ -94,10 +85,7 @@ class LiteralTests: XCTestCase {
     }
     
     func testLoadingBool() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": true}"#.data(using: String.Encoding.utf8), forKey: KeyManager.myBool.name)
         
@@ -112,10 +100,7 @@ class LiteralTests: XCTestCase {
     }
     
     func testSavingDouble() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.myDouble, value: Double.pi),
                          "Storage must save data")
@@ -128,10 +113,7 @@ class LiteralTests: XCTestCase {
     }
     
     func testLoadingDouble() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": \#(Double.pi)}"#.data(using: String.Encoding.utf8), forKey: KeyManager.myDouble.name)
         
@@ -146,10 +128,7 @@ class LiteralTests: XCTestCase {
     }
     
     func testSavingFloat() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.myFloat, value: Float.pi),
                          "Storage must save data")
@@ -162,10 +141,7 @@ class LiteralTests: XCTestCase {
     }
     
     func testLoadingFloat() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": \#(Float.pi)}"#.data(using: String.Encoding.utf8), forKey: KeyManager.myFloat.name)
         
@@ -185,10 +161,7 @@ class LiteralTests: XCTestCase {
             return
         }
         
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.myUrl, value: url),
                          "Storage must save data")
@@ -206,10 +179,7 @@ class LiteralTests: XCTestCase {
             return
         }
         
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": "\#(url)"}"#.data(using: String.Encoding.utf8), forKey: KeyManager.myUrl.name)
         

@@ -46,10 +46,7 @@ class PersistenceTests: XCTestCase {
     
     // MARK: - Tests
     func testSavingToDefaults() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(text: "Example Text")),
                          "Storage must save data")
@@ -62,10 +59,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testLoadingFromDefaults() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": {"text": "Hello, Defaults!"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
@@ -80,10 +74,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testExistsInStorage() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": {"text": "This record exists"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
@@ -93,10 +84,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testRemoveFromStorage() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": {"text": "Record for removal"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
@@ -110,10 +98,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testRemoveAll() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": {"text": "Record for removal"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         storage.defaults.set(#"{"value": {"text": "Removal Name"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
@@ -130,10 +115,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testRemoveExcept() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": {"text": "Record for removal"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         storage.defaults.set(#"{"value": {"text": "Sample Name"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
@@ -150,10 +132,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testSaveOneTypeForManyKeys() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(text: "Example Text 1")),
                          "Storage must save data")
@@ -171,10 +150,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func testLoadingOneTypeForManyKeys() {
-        guard let storage: RStorage<KeyManager> = RStorage() else {
-            XCTFail("Can not create RStorage")
-            return
-        }
+        let storage: RStorage = RStorage<KeyManager>.instance
         
         storage.defaults.set(#"{"value": {"text": "Hello, Defaults, 1!"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         storage.defaults.set(#"{"value": {"text": "Hello, Defaults, 2!"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct3.name)
@@ -193,5 +169,37 @@ class PersistenceTests: XCTestCase {
         XCTAssertEqual(struct3.text, "Hello, Defaults, 2!", "Text must be equal in defaults and loaded struct")
 
         storage.defaults.removePersistentDomain(forName: storage.domain)
+    }
+    
+    func testInstanceStorageAndStandardStorageCompatibility() {
+        let storage: RStorage = RStorage<KeyManager>.instance
+        
+        XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(text: "Example Text 1")),
+                         "Storage must save data")
+        
+        XCTAssertNil(UserDefaults.standard.data(forKey: KeyManager.struct1.name),
+                     "Custom Rstorage identifier is crossing with UserDefaults.standard")
+        
+        storage.remove(key: KeyManager.keys.struct1)
+    }
+    
+    func testStandardStoragesCompatibility() {
+        let storage: RStorage = RStorage<KeyManager>.standard
+        
+        XCTAssertNoThrow(try storage.save(key: KeyManager.keys.struct1, value: Struct1(text: "Example Text 1")),
+                         "Storage must save data")
+        
+        UserDefaults.standard.set(true, forKey: "TEST_BOOL")
+        
+        XCTAssertNotNil(UserDefaults.standard.data(forKey: KeyManager.struct1.name))
+        
+        storage.remove(key: KeyManager.keys.struct1)
+        
+        XCTAssertNil(UserDefaults.standard.data(forKey: KeyManager.struct1.name))
+        XCTAssertNotNil(UserDefaults.standard.value(forKey: "TEST_BOOL"))
+        
+        storage.removeAll()
+
+        XCTAssertNil(UserDefaults.standard.value(forKey: "TEST_BOOL"))
     }
 }
