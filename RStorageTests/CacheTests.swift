@@ -63,7 +63,7 @@ class CacheTests: XCTestCase {
             return
         }
         
-        storage.cache[KeyManager.struct1.name] = "{\"text\": \"Hello, Cache!\"}".data(using: String.Encoding.utf8)
+        storage.cache[KeyManager.struct1.name] = #"{"value": {"text": "Hello, Cache!"}}"#.data(using: String.Encoding.utf8)
         
         guard let struct1 = try? storage.load(key: KeyManager.keys.struct1) else {
             XCTFail("Can not load from storage")
@@ -79,7 +79,7 @@ class CacheTests: XCTestCase {
             return
         }
         
-        storage.cache[KeyManager.struct1.name] = "{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8)
+        storage.cache[KeyManager.struct1.name] = #"{"value": {"text": "This record exists"}}"#.data(using: String.Encoding.utf8)
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
     }
@@ -90,7 +90,7 @@ class CacheTests: XCTestCase {
             return
         }
         
-        storage.cache[KeyManager.struct1.name] = "{\"text\": \"Record for removal\"}".data(using: String.Encoding.utf8)
+        storage.cache[KeyManager.struct1.name] = #"{"value": {"text": "Record for removal"}}"#.data(using: String.Encoding.utf8)
         
         storage.remove(key: KeyManager.keys.struct1)
         
@@ -103,8 +103,8 @@ class CacheTests: XCTestCase {
             return
         }
         
-        storage.cache[KeyManager.struct1.name] = "{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8)
-        storage.cache[KeyManager.struct2.name] = "{\"name\": \"Removal Name\"}}".data(using: String.Encoding.utf8)
+        storage.cache[KeyManager.struct1.name] = #"{"value": {"text": "Record for removal"}}"#.data(using: String.Encoding.utf8)
+        storage.cache[KeyManager.struct2.name] = #"{"value": {"text": "Removal Name"}}"#.data(using: String.Encoding.utf8)
         
         storage.removeAll()
         
@@ -118,8 +118,8 @@ class CacheTests: XCTestCase {
             return
         }
         
-        storage.cache[KeyManager.struct1.name] = "{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8)
-        storage.cache[KeyManager.struct2.name] = "{\"name\": \"Removal Name\"}}".data(using: String.Encoding.utf8)
+        storage.cache[KeyManager.struct1.name] = #"{"value": {"text": "Record for removal"}}"#.data(using: String.Encoding.utf8)
+        storage.cache[KeyManager.struct2.name] = #"{"value": {"text": "Removal Name"}}"#.data(using: String.Encoding.utf8)
 
         storage.removeAll(without: KeyManager.struct2)
         
@@ -152,8 +152,8 @@ class CacheTests: XCTestCase {
             return
         }
         
-        storage.cache[KeyManager.struct1.name] = "{\"text\": \"Hello, Cache, 1!\"}".data(using: String.Encoding.utf8)
-        storage.cache[KeyManager.struct3.name] = "{\"text\": \"Hello, Cache, 2!\"}".data(using: String.Encoding.utf8)
+        storage.cache[KeyManager.struct1.name] = #"{"value": {"text": "Hello, Cache, 1!"}}"#.data(using: String.Encoding.utf8)
+        storage.cache[KeyManager.struct3.name] = #"{"value": {"text": "Hello, Cache, 2!"}}"#.data(using: String.Encoding.utf8)
 
         guard let struct1 = try? storage.load(key: KeyManager.keys.struct1) else {
             XCTFail("Can not load from storage")

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6F10B721223FB34000C84CDB /* RStorageInternalProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F10B720223FB34000C84CDB /* RStorageInternalProtocol.swift */; };
+		6F3AF688226F0BCA00D11680 /* RootJsonObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3AF687226F0BCA00D11680 /* RootJsonObject.swift */; };
 		6F40A385222D29C900952D84 /* CacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F40A384222D29C900952D84 /* CacheTests.swift */; };
 		6F708F7F222BE565008C7EDB /* RStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F708F75222BE565008C7EDB /* RStorage.framework */; };
 		6F708F86222BE565008C7EDB /* RStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F708F78222BE565008C7EDB /* RStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		6F10B720223FB34000C84CDB /* RStorageInternalProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RStorageInternalProtocol.swift; sourceTree = "<group>"; };
+		6F3AF687226F0BCA00D11680 /* RootJsonObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootJsonObject.swift; sourceTree = "<group>"; };
 		6F40A384222D29C900952D84 /* CacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheTests.swift; sourceTree = "<group>"; };
 		6F708F75222BE565008C7EDB /* RStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F708F78222BE565008C7EDB /* RStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RStorage.h; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				6FECADC722383BFD00B0D272 /* Key.swift */,
+				6F3AF687226F0BCA00D11680 /* RootJsonObject.swift */,
 				6F708F91222BE7E7008C7EDB /* RStorageManagerProtocol.swift */,
 				6F708F8F222BE7C1008C7EDB /* RStorageProtocol.swift */,
 				6F10B720223FB34000C84CDB /* RStorageInternalProtocol.swift */,
@@ -101,10 +104,10 @@
 		6F708F82222BE565008C7EDB /* RStorageTests */ = {
 			isa = PBXGroup;
 			children = (
+				ABB8F8332269F56000DA45ED /* LiteralTests.swift */,
 				6F40A384222D29C900952D84 /* CacheTests.swift */,
 				FCC6CFC1223EA863004DFD15 /* PersistenceTests.swift */,
 				ABD61FC922427E3E00551CCA /* CommonTests.swift */,
-				ABB8F8332269F56000DA45ED /* LiteralTests.swift */,
 				6F708F85222BE565008C7EDB /* Info.plist */,
 			);
 			path = RStorageTests;
@@ -221,6 +224,7 @@
 			files = (
 				6F10B721223FB34000C84CDB /* RStorageInternalProtocol.swift in Sources */,
 				6F708F94222BE848008C7EDB /* RStorage.swift in Sources */,
+				6F3AF688226F0BCA00D11680 /* RootJsonObject.swift in Sources */,
 				6FECADC822383BFD00B0D272 /* Key.swift in Sources */,
 				6F708F90222BE7C1008C7EDB /* RStorageProtocol.swift in Sources */,
 				6F708F92222BE7E7008C7EDB /* RStorageManagerProtocol.swift in Sources */,
@@ -388,7 +392,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.RStorage";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ephedra-software.RStorage";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -414,7 +418,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.three-man-army.RStorage";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ephedra-software.RStorage";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

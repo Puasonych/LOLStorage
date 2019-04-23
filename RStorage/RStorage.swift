@@ -25,12 +25,21 @@ open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorag
         self.jsonEncoder = jsonEncoder
         self.jsonDecoder = jsonDecoder
     }
-    
+
+    public init?(domain: String, jsonEncoder: JSONEncoder = JSONEncoder(), jsonDecoder: JSONDecoder = JSONDecoder()) {
+        self.domain = domain
+        guard let userDefaults = UserDefaults(suiteName: self.domain) else { return nil }
+        
+        self.defaults = userDefaults
+        self.jsonEncoder = jsonEncoder
+        self.jsonDecoder = jsonDecoder
+    }
+
     public func save<T>(key: Key<T, Manager>, value: T) throws where T : Codable {
         assert(key.manager.useCache || key.manager.usePersistentStorage,
                "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
         
-        let data: Data = try self.jsonEncoder.encode(value)
+        let data: Data = try self.jsonEncoder.encode(RootJsonObject(value: value))
         
         if key.manager.useCache {
             self.cache[key.manager.name] = data
@@ -46,12 +55,13 @@ open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorag
                "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
         
         if key.manager.useCache, let cachedData = self.cache[key.manager.name] {
-            return try self.jsonDecoder.decode(T.self, from: cachedData)
+            let data = try self.jsonDecoder.decode(RootJsonObject<T>.self, from: cachedData)
+            return data.value
         }
         
         if key.manager.usePersistentStorage {
             guard let data = self.defaults.data(forKey: key.manager.name),
-                let value = try? self.jsonDecoder.decode(T.self, from: data)
+                let value = try? self.jsonDecoder.decode(RootJsonObject<T>.self, from: data).value
                 else { return nil }
             
             if key.manager.useCache { self.cache[key.manager.name] = data }

@@ -1,4 +1,4 @@
-# RStorage [![Build Status](https://travis-ci.com/three-man-army/RStorage.svg?branch=master)](https://travis-ci.com/three-man-army/RStorage) [![Version](https://img.shields.io/cocoapods/v/RStorage.svg?style=flat)](https://cocoapods.org/pods/RStorage) [![codebeat badge](https://codebeat.co/badges/b4d848ef-9276-4b4d-8ac2-8dcff3b4b7aa)](https://codebeat.co/projects/github-com-puasonych-rstorage-master) [![codecov](https://codecov.io/gh/Puasonych/RStorage/branch/master/graph/badge.svg)](https://codecov.io/gh/Puasonych/RStorage)
+# RStorage [![Build Status](https://travis-ci.com/ephedra-software/RStorage.svg?branch=master)](https://travis-ci.com/ephedra-software/RStorage) [![Version](https://img.shields.io/cocoapods/v/RStorage.svg?style=flat)](https://cocoapods.org/pods/RStorage) [![codebeat badge](https://codebeat.co/badges/b4d848ef-9276-4b4d-8ac2-8dcff3b4b7aa)](https://codebeat.co/projects/github-com-puasonych-rstorage-master) [![codecov](https://codecov.io/gh/Puasonych/RStorage/branch/master/graph/badge.svg)](https://codecov.io/gh/Puasonych/RStorage)
 
 UserDefaults abstraction framework with caching
 
@@ -91,4 +91,4 @@ let storage: RStorage<KeyManager> = RStorage()
 
 ## License
 
-RStorage is released under an MIT license. See [LICENSE](https://github.com/Puasonych/RStorage/blob/master/LICENSE) for more information.
+RStorage is released under an MIT license. See [LICENSE](https://github.com/ephedra-software/RStorage/blob/master/LICENSE) for more information.
