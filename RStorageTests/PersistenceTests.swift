@@ -67,7 +67,7 @@ class PersistenceTests: XCTestCase {
             return
         }
         
-        storage.defaults.set("{\"text\": \"Hello, Defaults!\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set(#"{"value": {"text": "Hello, Defaults!"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
         guard let struct1 = try? storage.load(key: KeyManager.keys.struct1) else {
             XCTFail("Can not load from storage")
@@ -85,7 +85,7 @@ class PersistenceTests: XCTestCase {
             return
         }
         
-        storage.defaults.set("{\"text\": \"This record exists\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set(#"{"value": {"text": "This record exists"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
         XCTAssertTrue(storage.isExists(key: KeyManager.keys.struct1), "Record must exist in storage")
 
@@ -98,7 +98,7 @@ class PersistenceTests: XCTestCase {
             return
         }
         
-        storage.defaults.set("{\"text\": \"Record for removal\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set(#"{"value": {"text": "Record for removal"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
         
         XCTAssertNotNil(storage.defaults.data(forKey: KeyManager.struct1.name), "Record must exists in storage")
         
@@ -115,8 +115,8 @@ class PersistenceTests: XCTestCase {
             return
         }
         
-        storage.defaults.set("{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
-        storage.defaults.set("{\"name\": \"Removal Name\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
+        storage.defaults.set(#"{"value": {"text": "Record for removal"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set(#"{"value": {"text": "Removal Name"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
         
         XCTAssertNotNil(storage.defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must exists in storage")
         XCTAssertNotNil(storage.defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must exists in storage")
@@ -135,8 +135,8 @@ class PersistenceTests: XCTestCase {
             return
         }
         
-        storage.defaults.set("{\"text\": \"Record for removal\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
-        storage.defaults.set("{\"name\": \"Sample Name\"}}".data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
+        storage.defaults.set(#"{"value": {"text": "Record for removal"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set(#"{"value": {"text": "Sample Name"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct2.name)
         
         XCTAssertNotNil(storage.defaults.value(forKey: KeyManager.struct1.name), "\(KeyManager.struct1.name) must exists in storage")
         XCTAssertNotNil(storage.defaults.value(forKey: KeyManager.struct2.name), "\(KeyManager.struct2.name) must exists in storage")
@@ -176,8 +176,8 @@ class PersistenceTests: XCTestCase {
             return
         }
         
-        storage.defaults.set("{\"text\": \"Hello, Defaults, 1!\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
-        storage.defaults.set("{\"text\": \"Hello, Defaults, 2!\"}".data(using: String.Encoding.utf8), forKey: KeyManager.struct3.name)
+        storage.defaults.set(#"{"value": {"text": "Hello, Defaults, 1!"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct1.name)
+        storage.defaults.set(#"{"value": {"text": "Hello, Defaults, 2!"}}"#.data(using: String.Encoding.utf8), forKey: KeyManager.struct3.name)
         
         guard let struct1 = try? storage.load(key: KeyManager.keys.struct1) else {
             XCTFail("Can not load from storage")
