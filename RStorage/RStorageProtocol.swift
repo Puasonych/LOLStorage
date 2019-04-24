@@ -11,6 +11,7 @@ import Foundation
 /// The protocol with functions for `RStorage`
 public protocol RStorageProtocol: class {
     associatedtype Manager: RStorageManagerProtocol
+    
     /**
      Save value with registered type
      
