@@ -16,6 +16,7 @@
 		6F708F92222BE7E7008C7EDB /* RStorageManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F91222BE7E7008C7EDB /* RStorageManagerProtocol.swift */; };
 		6F708F94222BE848008C7EDB /* RStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F708F93222BE848008C7EDB /* RStorage.swift */; };
 		6FECADC822383BFD00B0D272 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECADC722383BFD00B0D272 /* Key.swift */; };
+		AB7E37FE226F54D100E29A2B /* KeysSuffixesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E37FD226F54D100E29A2B /* KeysSuffixesTests.swift */; };
 		ABB8F8342269F56000DA45ED /* LiteralTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB8F8332269F56000DA45ED /* LiteralTests.swift */; };
 		ABD61FCA22427E3E00551CCA /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD61FC922427E3E00551CCA /* CommonTests.swift */; };
 		FCC6CFC2223EA863004DFD15 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6CFC1223EA863004DFD15 /* PersistenceTests.swift */; };
@@ -44,6 +45,7 @@
 		6F708F91222BE7E7008C7EDB /* RStorageManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RStorageManagerProtocol.swift; sourceTree = "<group>"; };
 		6F708F93222BE848008C7EDB /* RStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RStorage.swift; sourceTree = "<group>"; };
 		6FECADC722383BFD00B0D272 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		AB7E37FD226F54D100E29A2B /* KeysSuffixesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSuffixesTests.swift; sourceTree = "<group>"; };
 		ABB8F8332269F56000DA45ED /* LiteralTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteralTests.swift; sourceTree = "<group>"; };
 		ABD61FC922427E3E00551CCA /* CommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTests.swift; sourceTree = "<group>"; };
 		FCC6CFC1223EA863004DFD15 /* PersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				6F40A384222D29C900952D84 /* CacheTests.swift */,
 				FCC6CFC1223EA863004DFD15 /* PersistenceTests.swift */,
 				ABD61FC922427E3E00551CCA /* CommonTests.swift */,
+				AB7E37FD226F54D100E29A2B /* KeysSuffixesTests.swift */,
 				6F708F85222BE565008C7EDB /* Info.plist */,
 			);
 			path = RStorageTests;
@@ -237,6 +240,7 @@
 			files = (
 				6F40A385222D29C900952D84 /* CacheTests.swift in Sources */,
 				ABB8F8342269F56000DA45ED /* LiteralTests.swift in Sources */,
+				AB7E37FE226F54D100E29A2B /* KeysSuffixesTests.swift in Sources */,
 				FCC6CFC2223EA863004DFD15 /* PersistenceTests.swift in Sources */,
 				ABD61FCA22427E3E00551CCA /* CommonTests.swift in Sources */,
 			);

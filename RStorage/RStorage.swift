@@ -9,62 +9,77 @@
 import Foundation
 
 open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorageInternalProtocol {
-    private let jsonEncoder: JSONEncoder
-    private let jsonDecoder: JSONDecoder
-
+    private enum UserDefaultType {
+        case standard
+        case custom
+    }
+    
     internal var domain: String
     internal var defaults: UserDefaults
     
     internal lazy var cache: [String: Data] = [:]
-    
-    public init?(jsonEncoder: JSONEncoder = JSONEncoder(), jsonDecoder: JSONDecoder = JSONDecoder()) {
-        self.domain = "\(type(of: self))"
-        guard let userDefaults = UserDefaults(suiteName: self.domain) else { return nil }
-        
-        self.defaults = userDefaults
-        self.jsonEncoder = jsonEncoder
-        self.jsonDecoder = jsonDecoder
-    }
 
-    public init?(domain: String, jsonEncoder: JSONEncoder = JSONEncoder(), jsonDecoder: JSONDecoder = JSONDecoder()) {
-        self.domain = domain
-        guard let userDefaults = UserDefaults(suiteName: self.domain) else { return nil }
+    private init?(defaultsType: UserDefaultType) {
+        switch defaultsType {
+        case UserDefaultType.standard:
+            guard let bundleIdentifier = Bundle.main.bundleIdentifier else { return nil }
+            self.domain = bundleIdentifier
+            self.defaults = UserDefaults.standard
+            
+        case UserDefaultType.custom:
+            self.domain = "\(type(of: self))"
+            guard let userDefaults = UserDefaults(suiteName: self.domain) else { return nil }
+            self.defaults = userDefaults
+        }
+    }
+    
+    public static var standard: RStorage<Manager> {
+        guard let storage = RStorage<Manager>(defaultsType: UserDefaultType.standard) else {
+            fatalError("Budle Main Identifier not found")
+        }
         
-        self.defaults = userDefaults
-        self.jsonEncoder = jsonEncoder
-        self.jsonDecoder = jsonDecoder
+        return storage
+    }
+    
+    public static var instance: RStorage<Manager> {
+        guard let storage = RStorage<Manager>(defaultsType: UserDefaultType.custom) else {
+            fatalError("Unable to creae RStorage")
+        }
+        return storage
     }
 
     public func save<T>(key: Key<T, Manager>, value: T) throws where T : Codable {
+        let keyName = key.manager.name + key.manager.suffix
         assert(key.manager.useCache || key.manager.usePersistentStorage,
-               "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
+               "The data \(keyName) is not cached; check the information in RStorageManagerProtocol")
         
-        let data: Data = try self.jsonEncoder.encode(RootJsonObject(value: value))
+        let data: Data = try key.manager.jsonEncoder.encode(RootJsonObject(value: value))
         
         if key.manager.useCache {
-            self.cache[key.manager.name] = data
+            self.cache[keyName] = data
         }
         
         if key.manager.usePersistentStorage {
-            self.defaults.set(data, forKey: key.manager.name)
+            self.defaults.set(data, forKey: keyName)
         }
     }
     
     public func load<T>(key: Key<T, Manager>) throws -> T? where T : Codable {
+        let keyName = key.manager.name + key.manager.suffix
         assert(key.manager.useCache || key.manager.usePersistentStorage,
-               "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
+               "The data \(keyName) is not cached; check the information in RStorageManagerProtocol")
         
-        if key.manager.useCache, let cachedData = self.cache[key.manager.name] {
-            let data = try self.jsonDecoder.decode(RootJsonObject<T>.self, from: cachedData)
+        if key.manager.useCache, let cachedData = self.cache[keyName] {
+            let data = try key.manager.jsonDecoder.decode(RootJsonObject<T>.self, from: cachedData)
             return data.value
         }
         
         if key.manager.usePersistentStorage {
-            guard let data = self.defaults.data(forKey: key.manager.name),
-                let value = try? self.jsonDecoder.decode(RootJsonObject<T>.self, from: data).value
+            guard let data = self.defaults.data(forKey: keyName),
+                let value = try? key.manager.jsonDecoder.decode(RootJsonObject<T>.self, from: data).value
                 else { return nil }
             
-            if key.manager.useCache { self.cache[key.manager.name] = data }
+            if key.manager.useCache { self.cache[keyName] = data }
             
             return value
         }
@@ -73,13 +88,14 @@ open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorag
     }
     
     public func isExists<T>(key: Key<T, Manager>) -> Bool where T : Codable {
+        let keyName = key.manager.name + key.manager.suffix
         assert(key.manager.useCache || key.manager.usePersistentStorage,
-               "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
+               "The data \(keyName) is not cached; check the information in RStorageManagerProtocol")
         
-        if key.manager.useCache, self.cache[key.manager.name] != nil { return true }
+        if key.manager.useCache, self.cache[keyName] != nil { return true }
         
-        if key.manager.usePersistentStorage, let data = self.defaults.data(forKey: key.manager.name) {
-            if key.manager.useCache { self.cache[key.manager.name] = data }
+        if key.manager.usePersistentStorage, let data = self.defaults.data(forKey: keyName) {
+            if key.manager.useCache { self.cache[keyName] = data }
             
             return true
         }
@@ -88,15 +104,16 @@ open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorag
     }
     
     public func remove<T>(key: Key<T, Manager>) where T : Codable {
+        let keyName = key.manager.name + key.manager.suffix
         assert(key.manager.useCache || key.manager.usePersistentStorage,
-               "The data \(key.manager.name) is not cached; check the information in RStorageManagerProtocol")
+               "The data \(keyName) is not cached; check the information in RStorageManagerProtocol")
         
         if key.manager.useCache {
-            self.cache.removeValue(forKey: key.manager.name)
+            self.cache.removeValue(forKey: keyName)
         }
         
         if key.manager.usePersistentStorage {
-            self.defaults.removeObject(forKey: key.manager.name)
+            self.defaults.removeObject(forKey: keyName)
         }
     }
     
@@ -106,21 +123,24 @@ open class RStorage<Manager: RStorageManagerProtocol>: RStorageProtocol, RStorag
             self.defaults.removePersistentDomain(forName: self.domain)
             return
         }
-
-        for key in self.getAllKeys().symmetricDifference(without.map({ return $0.name })) {
+        
+        var withoutSet: Set<String> = Set()
+        for key in without { withoutSet.insert(key.name + key.suffix) }
+        
+        for key in self.getAllUsedKeys() where !withoutSet.contains(key)  {
             self.cache[key] = nil
             self.defaults.removeObject(forKey: key)
         }
     }
 
-    func getAllKeys() -> Set<String> {
+    func getAllUsedKeys() -> Set<String> {
         var result: Set<String> = Set()
         
-        for key in Manager.allCases { result.insert(key.name) }
+        for (key, _) in self.cache { result.insert(key) }
 
-        guard let otherKeys = self.defaults.persistentDomain(forName: self.domain) else { return result }
+        guard let keys = self.defaults.persistentDomain(forName: self.domain) else { return result }
 
-        for (key, _) in otherKeys { result.insert(key) }
+        for (key, _) in keys { result.insert(key) }
 
         return result
     }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name               = 'RStorage'
-  spec.version            = '1.1.0'
+  spec.version            = '1.2.0'
   spec.summary            = 'UserDefaults abstraction framework with caching'
   spec.homepage           = 'https://github.com/ephedra-software/RStorage'
   spec.license            = { :type => 'MIT', :file => 'LICENSE' }
