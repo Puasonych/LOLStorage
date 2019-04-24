@@ -22,27 +22,33 @@ import the framework with `import RStorage`.
 Using RStorage is really simple. You can access an API like this:
 
 ```swift
+let storage: RStorage = RStorage<KeyManager>.instance
+
+struct YourCodableStructure: Codable {
+    let name: String
+}
+
 do {
-    try storage.save(key: KeyManager.keys.keyOne, value: YourCodableStructureOne(name: "Struct1"))
-    try storage.save(key: KeyManager.keys.keyTwo, value: YourCodableStructureTwo(name: "Struct2"))
+    try storage.save(key: KeyManager.keys.keyOne, value: URL("https://www.google.com/")!)
+    try storage.save(key: KeyManager.keys.keyTwo, value: YourCodableStructure(name: "Struct"))
     
     let data1 = try storage.load(key: KeyManager.keys.keyOne)
     let data2 = try storage.load(key: KeyManager.keys.keyTwo)
     
-    print("Data1 name: \(data1?.name ?? "Not found data1")") // Data1 name: Struct1
-    print("Data2 name: \(data2?.name ?? "Not found data2")") // Data2 name: Struct2
-    
-    storage.removeAll(without: KeyManager.keyOne)
+    print("Url: \(data1 ?? "Not found url")")                   // Url: https://www.google.com/
+    print("Data name: \(data2?.name ?? "Not found data2")")     // Data name: Struct
 } catch {
     print(error.localizedDescription)
 }
+
+storage.removeAll(without: KeyManager.keyOne)
 
 do {
     let data1 = try storage.load(key: KeyManager.keys.keyOne)
     let data2 = try storage.load(key: KeyManager.keys.keyTwo)
     
-    print("Data1 name: \(data1?.name ?? "Not found data1")") // Data1 name: Struct1
-    print("Data2 name: \(data2?.name ?? "Not found data2")") // Data2 name: Not found data2
+    print("Url: \(data1 ?? "Not found url")")                   // Url: https://www.google.com/
+    print("Data name: \(data2?.name ?? "Not found data2")")     // Data name: Not found data2
 } catch {
     print(error.localizedDescription)
 }
@@ -53,12 +59,12 @@ To do this, you must implement the following:
 ```swift
 enum KeyManager: String, RStorageManagerProtocol {
     typealias SupportedKeys = (
-        keyOne: Key<YourCodableStructureOne, KeyManager>,
-        keyTwo: Key<YourCodableStructureTwo, KeyManager>
+        keyOne: Key<URL, KeyManager>,
+        keyTwo: Key<YourCodableStructure, KeyManager>
     )
     
-    case keyOne = "__YourCodableStructureOne__"
-    case keyTwo = "__YourCodableStructureTwo__"
+    case keyOne = "__DefaultType__"
+    case keyTwo = "__YourCodableStructure__"
     
     static var keys: SupportedKeys {
         return (
@@ -69,15 +75,15 @@ enum KeyManager: String, RStorageManagerProtocol {
 
     var useCache: Bool {
         switch self {
-        case .keyOne: return true
+        case .keyOne: return false
         case .keyTwo: return true
         }
     }
 
     var usePersistentStorage: Bool {
         switch self {
-        case .keyOne: return false
-        case .keyTwo: return false
+        case .keyOne: return true
+        case .keyTwo: return true
         }
     }
     
@@ -85,8 +91,6 @@ enum KeyManager: String, RStorageManagerProtocol {
         return self.rawValue
     }
 }
-
-let storage: RStorage<KeyManager> = RStorage()
 ```
 
 ## License
