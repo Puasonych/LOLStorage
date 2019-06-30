@@ -1,3 +1,4 @@
+import PackageDescription
 
 let package = Package(
     name: "RStorage",
@@ -7,6 +8,6 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        .target(name: "RStorage", dependencies: [])
+        .target(name: "RStorage")
     ]
 )
