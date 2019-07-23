@@ -9,7 +9,7 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        .target(name: "RStorage")
+        .target(name: "RStorage", path: "RStorage")
     ],
     swiftLanguageVersions: [.v5]
 )
