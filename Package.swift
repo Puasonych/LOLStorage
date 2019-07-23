@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "RStorage",
-    platforms: [.iOS(.v12)],
+    platforms: [.iOS(.v8)],
     products: [
         .library(name: "RStorage", targets: ["RStorage"])
     ],
