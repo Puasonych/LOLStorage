@@ -17,6 +17,18 @@ Then run `pod install`.
 In any file you'd like to use RStorage in, don't forget to
 import the framework with `import RStorage`.
 
+### SwiftPM (Accio)
+
+For install RStorage with Accio (or SwiftPM from Xcode 11) add this line to Package.swift
+```swift
+.package(url: "https://github.com/ephedra-software/RStorage.git", .upToNextMajor(from: "1.2.2"))
+```
+
+Then run `accio install` or `accio update`.
+
+In any file you'd like to use RStorage in, don't forget to
+import the framework with `import RStorage`.
+
 ## Usage
 
 Using RStorage is really simple. You can access an API like this:
